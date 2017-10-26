@@ -1,0 +1,19 @@
+{
+  "name": "confetti-generator",
+  "version": "1.0.0",
+  "description": "Easily Generate random confetti for your above-the-fold content",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Agezao/confetti-generator.git"
+  },
+  "author": "Gabriel Age <0800.grc@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Agezao/confetti-generator/issues"
+  },
+  "homepage": "https://github.com/Agezao/confetti-generator#readme"
+}
