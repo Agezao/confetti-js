@@ -4,7 +4,8 @@
   "description": "Easily Generate random confetti for your above-the-fold content",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Agezao/confetti-generator/issues"
   },
-  "homepage": "https://github.com/Agezao/confetti-generator#readme"
+  "homepage": "https://github.com/Agezao/confetti-generator#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^1.0.0"
+  }
 }
