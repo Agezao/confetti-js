@@ -41,7 +41,10 @@ After installing the plugin(adding the ``<script />``), just call-it passing the
 done!
 
 ## Options
-to-do
+
+| Attribute | Description | Example value | Default value |
+|---------------------------|-------------|---------------|---------|
+| *`target`* | The Id tag of the canvas that will be used | 'my-canvas' | 'confetti-holder' |
 
 ## License
 to-do
