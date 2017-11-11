@@ -1,8 +1,8 @@
-# 🎉 <a href="https://agezao.github.io/confetti-generator" target="_blank">Confetti Generator</a> 🎉
+# 🎉 <a href="https://agezao.github.io/confetti-js" target="_blank">Confetti Generator</a> 🎉
 Easily Generate random confetti with javascript and make your design look cooler
 
 ## Demo 🚀
-<a href="https://agezao.github.io/confetti-generator" target="_blank">Demo</a> // <a href="https://agezao.github.io/confetti-generator/examples" target="_blank">Examples</a>
+<a href="https://agezao.github.io/confetti-js" target="_blank">Demo</a> // <a href="https://agezao.github.io/confetti-js/examples" target="_blank">Examples</a>
 
 ## Why?
 Have you ever seen that cool looking confetti on landing pages and above-the-fold content? We give you the power to create the same effect for free and without the hassle of having to design or code it from scratch.
@@ -15,7 +15,7 @@ Have you ever seen that cool looking confetti on landing pages and above-the-fol
       npm install confetti-js --save
     ```
 
-- Direct download -> [click here](https://github.com/agezao/confetti-generator/archive/master.zip)
+- Direct download -> [click here](https://github.com/agezao/confetti-js/archive/master.zip)
 
 ### ➕ Add scripts
 
