@@ -1,4 +1,4 @@
-var ConfettiGenerator = function(params) {
+window.ConfettiGenerator = function(params) {
   //////////////
   // Defaults
   var appstate = {
