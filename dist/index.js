@@ -142,6 +142,9 @@ window.ConfettiGenerator = function(params) {
           particleDraw(particles[i]);
         
         update();
+
+        //animation loop
+        if(appstate.animate) requestAnimationFrame(draw)
       }
 
       function update() {
@@ -159,10 +162,6 @@ window.ConfettiGenerator = function(params) {
         }
       }
 
-      //animation loop
-      if(appstate.animate)
-        return appstate.interval = setInterval(draw, 20);
-      
       return draw();
   };
 
