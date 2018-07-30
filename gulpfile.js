@@ -8,7 +8,7 @@ var minify = require('gulp-minify');
 // JS building
 var scriptsToBundle = ['./dist/index.js'];
 
-gulp.task('bundle-js', function() {
+function build() {
   return gulp.src(scriptsToBundle)
     .pipe(concat('index.js'))
     .pipe(minify({
@@ -18,8 +18,9 @@ gulp.task('bundle-js', function() {
       }
     }))
     .pipe(gulp.dest('./dist'))
-});
+};
 
 ///////
 
-gulp.task('default', ['bundle-js']);
+exports.build = build;
+exports.default = gulp.series(build);
