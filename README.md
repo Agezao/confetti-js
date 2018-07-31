@@ -1,6 +1,8 @@
 # 🎉 <a href="https://agezao.github.io/confetti-js" target="_blank">Confetti Generator</a> 🎉
 Easily Generate random confetti with javascript and make your design look cooler
 
+<a href="https://www.npmjs.com/package/confetti-js"><img src="https://badge.fury.io/js/confetti-js.svg"></a>
+
 ## Demo 🚀
 <a href="https://agezao.github.io/confetti-js" target="_blank">Demo</a> // <a href="https://agezao.github.io/confetti-js/examples" target="_blank">Examples</a>
 
