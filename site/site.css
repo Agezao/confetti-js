@@ -6,6 +6,9 @@ body {
   background-color: #fff;
   font-family: 'Lato', sans-serif;
 }
+body {
+  overflow-x: hidden;
+}
 div {
   box-sizing: border-box;
 }

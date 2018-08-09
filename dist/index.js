@@ -117,11 +117,15 @@ window.ConfettiGenerator = function(params) {
   //////////////
   // Clean actual state
   var _clear = function() {
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    var w = cv.width;
-    cv.width = 1;
-    cv.width = w;
+    appstate.animate = false;
     clearInterval(appstate.interval);
+    
+    requestAnimationFrame(function() {
+    	ctx.clearRect(0, 0, cv.width, cv.height);
+      var w = cv.width;
+      cv.width = 1;
+      cv.width = w;
+    });
   }
 
   //////////////

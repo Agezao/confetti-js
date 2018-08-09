@@ -75,8 +75,13 @@ var AppClass = function() {
     render();
   };
 
+  var clear = function() {
+    confetti.clear();
+  }
+
   return {
     start: start,
+    clear: clear,
     render: render
   };
 }
