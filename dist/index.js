@@ -127,7 +127,7 @@ window.ConfettiGenerator = function(params) {
         ctx.save();
         var image = new Image();
         image.src = p.src;
-        const size = p.size || 15;
+        var size = p.size || 15;
         ctx.translate(p.x + size / 2, p.y + size / 2);
         ctx.rotate(p.rotation);
         ctx.drawImage(image, -(size/2) * appstate.size, -(size/2) * appstate.size, size * appstate.size, size * appstate.size);
