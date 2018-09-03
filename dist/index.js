@@ -54,10 +54,12 @@ window.ConfettiGenerator = function(params) {
   //////////////
   // Confetti particle generator
   function particleFactory() {
+    var prop = appstate.props[rand(appstate.props.length, true)];
     var p = {
-      prop: appstate.props[rand(appstate.props.length, true)], //prop type
+      prop: prop.type ? prop.type : prop, //prop type
       x: rand(appstate.width), //x-coordinate
       y: rand(appstate.height), //y-coordinate
+      src: prop.src,
       radius: rand(4) + 1, //radius
       line: Math.floor(rand(65) - 30), // line angle
       angles: [rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2], // triangle drawing angles
@@ -104,6 +106,16 @@ window.ConfettiGenerator = function(params) {
         ctx.translate(p.x+15, p.y+5);
         ctx.rotate(p.rotation);
         ctx.fillRect(-15 * appstate.size,-5 * appstate.size,15 * appstate.size,5 * appstate.size);
+        ctx.restore();
+        break;
+      }
+      case 'svg': {
+        ctx.save();
+        var image = new Image();
+        img.src = p.src;
+        ctx.translate(p.x + 15, p.y + 15);
+        ctx.rotate(p.rotation);
+        ctx.drawImage(img, -15 * appstate.size, -15 * appstate.size, 15 * appstate.size, 15 * appstate.size);
         ctx.restore();
         break;
       }
