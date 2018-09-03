@@ -51,10 +51,22 @@ window.ConfettiGenerator = function(params) {
     return !floor ? rand : Math.floor(rand);
   }
 
+  var totalWeight = appstate.props.reduce(function(weight, prop) {
+    return weight + (prop.weight || 1);
+  }, 0);
+  function selectProp() {
+    var rand = Math.random() * totalWeight;
+    for (var i = 0; i < appstate.props.length; ++i) {
+      var weight = appstate.props[i].weight || 1;
+      if (rand < weight) return i;
+      rand -= weight;
+    }
+  }
+
   //////////////
   // Confetti particle generator
   function particleFactory() {
-    var prop = appstate.props[rand(appstate.props.length, true)];
+    var prop = appstate.props[selectProp()];
     var p = {
       prop: prop.type ? prop.type : prop, //prop type
       x: rand(appstate.width), //x-coordinate
