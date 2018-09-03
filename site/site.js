@@ -4,7 +4,7 @@ var AppClass = function() {
     max: 80,
     size: 1,
     animate: true,
-    props: ['circle', 'square', 'triangle', 'line'],
+    props: ['circle', 'square', 'triangle', 'line', {type:'svg', src:'hat.svg'}],
     colors: [[165,104,246],[230,61,135],[0,199,228],[253,214,126]],
     clock: 25,
     width: window.innerWidth,
@@ -52,6 +52,7 @@ var AppClass = function() {
       appstate.props.push('triangle');
     if(document.getElementById('line').checked)
       appstate.props.push('line');
+    appstate.props.push({type:'svg', src:'site/hat.svg', size: 25, rotate: true, weight: 0.1});
 
     appstate.colors = '['+document.getElementById('colors').value+']';
     appstate.colors = JSON.parse(appstate.colors);
