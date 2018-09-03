@@ -26,6 +26,7 @@ var AppClass = function() {
     document.getElementById('square').checked = appstate.props.indexOf('square') > -1;
     document.getElementById('triangle').checked = appstate.props.indexOf('triangle') > -1;
     document.getElementById('line').checked = appstate.props.indexOf('line') > -1;
+    document.getElementById('svg').checked = appstate.props.find(function(el) { return el.type == 'svg' });
 
     var parsedColors = JSON.stringify(appstate.colors);
     document.getElementById('colors').value = parsedColors.substring(1, parsedColors.length - 1);
@@ -52,7 +53,8 @@ var AppClass = function() {
       appstate.props.push('triangle');
     if(document.getElementById('line').checked)
       appstate.props.push('line');
-    appstate.props.push({type:'svg', src:'site/hat.svg', size: 25, rotate: true, weight: 0.1});
+    if(document.getElementById('svg').checked)
+      appstate.props.push({type:'svg', src:'site/hat.svg', size: 25, rotate: true, weight: 0.5});
 
     appstate.colors = '['+document.getElementById('colors').value+']';
     appstate.colors = JSON.parse(appstate.colors);
