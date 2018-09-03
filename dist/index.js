@@ -61,6 +61,8 @@ window.ConfettiGenerator = function(params) {
       y: rand(appstate.height), //y-coordinate
       src: prop.src,
       radius: rand(4) + 1, //radius
+      size: prop.size,
+      rotate: prop.rotate,
       line: Math.floor(rand(65) - 30), // line angle
       angles: [rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2], // triangle drawing angles
       color: appstate.colors[rand(appstate.colors.length, true)], // color
@@ -112,10 +114,11 @@ window.ConfettiGenerator = function(params) {
       case 'svg': {
         ctx.save();
         var image = new Image();
-        img.src = p.src;
-        ctx.translate(p.x + 15, p.y + 15);
+        image.src = p.src;
+        const size = p.size || 15;
+        ctx.translate(p.x + size / 2, p.y + size / 2);
         ctx.rotate(p.rotation);
-        ctx.drawImage(img, -15 * appstate.size, -15 * appstate.size, 15 * appstate.size, 15 * appstate.size);
+        ctx.drawImage(image, -(size/2) * appstate.size, -(size/2) * appstate.size, size * appstate.size, size * appstate.size);
         ctx.restore();
         break;
       }
@@ -169,6 +172,8 @@ window.ConfettiGenerator = function(params) {
           var p = particles[i];
           if(appstate.animate)
             p.y += p.speed;
+          if (p.rotate) 
+            p.rotation += p.speed / 35;
           
           if (p.y > appstate.height) {
             particles[i] = p; 
