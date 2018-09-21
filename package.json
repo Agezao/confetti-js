@@ -4,7 +4,7 @@
   "description": "Easily Generate random confetti for your above-the-fold content",
   "main": "dist/index.js",
   "scripts": {
-    "test": "",
+    "dev": "gulp watch",
     "build": "gulp default"
   },
   "repository": {

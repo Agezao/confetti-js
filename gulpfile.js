@@ -1,14 +1,15 @@
 'use strict';
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var minify = require('gulp-minify');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const rename = require('gulp-rename');
+const minify = require('gulp-minify');
+
+// Constants
+const scriptsToBundle = ['./src/confetti.js'];
 
 // JS building
-var scriptsToBundle = ['./dist/index.js'];
-
-function build() {
+gulp.task('build', () => {
   return gulp.src(scriptsToBundle)
     .pipe(concat('index.js'))
     .pipe(minify({
@@ -18,9 +19,14 @@ function build() {
       }
     }))
     .pipe(gulp.dest('./dist'))
-};
+});
 
 ///////
 
-exports.build = build;
-exports.default = gulp.series(build);
+gulp.task('watchJob', () => {
+  return gulp.watch(scriptsToBundle, gulp.series('build'));
+});
+
+//
+gulp.task('watch', gulp.series('watchJob'));
+gulp.task('default', gulp.series('build'));

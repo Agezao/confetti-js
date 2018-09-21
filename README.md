@@ -60,6 +60,7 @@ done!
 | *`colors`* | The color to be rendered on the confetti. By default, RGB format inside an array. | [[0,0,0], [255,255,255]] | [[165,104,246],[230,61,135],[0,199,228],[253,214,126]] |
 | *`width`* | Canvas width | 960 | *window size* |
 | *`height`* | Canvas height | 767 | *window height* |
+| *`rotate`* | If set to `true`, SVG and squares will rotate while falling. | `true` | `false` |
 
 ### Special SVG particle type
 
@@ -80,7 +81,6 @@ You must specify the `type` and `src` properties. There are also a few other con
 
 | Attribute | Description | Example value | Default value |
 |---------------------------|-------------|--------------------|---------|
-| *`rotate`* | If set to `true`, this SVG will rotate while falling. | `true` | `false` |
 | *`size`* | Set the size of the SVG when it renders as a particle. | `25` | `15` |
 | *`weight`* | The probability of this particle being rendered, where 1 is a regular weight, and 0.1 is uncommon. | `0.5` | `1` |
 
