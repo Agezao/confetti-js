@@ -192,10 +192,10 @@ window.ConfettiGenerator = function(params) {
           if (p.rotate)
             p.rotation += p.speed / 35;
           
-          if (p.y > appstate.height) {
+          if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
             particles[i] = p; 
             particles[i].x = rand(appstate.width, true);
-            particles[i].y = -10;
+            particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
           }
         }
       }
