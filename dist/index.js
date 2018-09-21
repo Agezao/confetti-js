@@ -51,14 +51,30 @@ window.ConfettiGenerator = function(params) {
     return !floor ? rand : Math.floor(rand);
   }
 
+  var totalWeight = appstate.props.reduce(function(weight, prop) {
+    return weight + (prop.weight || 1);
+  }, 0);
+  function selectProp() {
+    var rand = Math.random() * totalWeight;
+    for (var i = 0; i < appstate.props.length; ++i) {
+      var weight = appstate.props[i].weight || 1;
+      if (rand < weight) return i;
+      rand -= weight;
+    }
+  }
+
   //////////////
   // Confetti particle generator
   function particleFactory() {
+    var prop = appstate.props[selectProp()];
     var p = {
-      prop: appstate.props[rand(appstate.props.length, true)], //prop type
+      prop: prop.type ? prop.type : prop, //prop type
       x: rand(appstate.width), //x-coordinate
       y: rand(appstate.height), //y-coordinate
+      src: prop.src,
       radius: rand(4) + 1, //radius
+      size: prop.size,
+      rotate: prop.rotate,
       line: Math.floor(rand(65) - 30), // line angle
       angles: [rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2], // triangle drawing angles
       color: appstate.colors[rand(appstate.colors.length, true)], // color
@@ -104,6 +120,17 @@ window.ConfettiGenerator = function(params) {
         ctx.translate(p.x+15, p.y+5);
         ctx.rotate(p.rotation);
         ctx.fillRect(-15 * appstate.size,-5 * appstate.size,15 * appstate.size,5 * appstate.size);
+        ctx.restore();
+        break;
+      }
+      case 'svg': {
+        ctx.save();
+        var image = new Image();
+        image.src = p.src;
+        var size = p.size || 15;
+        ctx.translate(p.x + size / 2, p.y + size / 2);
+        ctx.rotate(p.rotation);
+        ctx.drawImage(image, -(size/2) * appstate.size, -(size/2) * appstate.size, size * appstate.size, size * appstate.size);
         ctx.restore();
         break;
       }
@@ -157,6 +184,8 @@ window.ConfettiGenerator = function(params) {
           var p = particles[i];
           if(appstate.animate)
             p.y += p.speed;
+          if (p.rotate) 
+            p.rotation += p.speed / 35;
           
           if (p.y > appstate.height) {
             particles[i] = p; 
