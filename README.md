@@ -106,10 +106,3 @@ _But if you take the time to contribute with the project it would be nice too, j
 
 ## Thanks
 Special thanks to _["Paper Matthew"](https://codepen.io/paper_matthew/pen/PNxrbK)_ on codepen for providing the starting point wich I fork to build this. You are awesome.
-
-## Supporting
-If this really helped you and warmed your kind heart, donations would be really appreciated 🖤
-
-[![Donate with Bitcoin](https://en.cryptobadges.io/badge/small/18HNXFq1VAsEQWYwmdePnAbmuWN65WAVjv)](https://en.cryptobadges.io/donate/18HNXFq1VAsEQWYwmdePnAbmuWN65WAVjv)
-
-[![Donate with Ethereum](https://en.cryptobadges.io/badge/small/0xA2716B71a4f0f86306647Be953dccEb18612a16A)](https://en.cryptobadges.io/donate/0xA2716B71a4f0f86306647Be953dccEb18612a16A)
