@@ -1,4 +1,4 @@
-window.ConfettiGenerator = function(params) {
+export default function ConfettiGenerator(params) {
   //////////////
   // Defaults
   var appstate = {
