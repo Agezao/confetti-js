@@ -29,7 +29,7 @@ Have you ever seen that cool looking confetti on landing pages and above-the-fol
 
   ```javascript
   // At the component you want to use confetti
-  import "confetti-js";
+  import ConfettiGenerator from "confetti-js";
   ```
 
 ### 🤔 How to use it?
@@ -45,6 +45,19 @@ var confettiSettings = { target: 'my-canvas' };
 var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
 ```
+
+### React
+
+```jsx
+React.useEffect(() => {
+  const confettiSettings = { target: 'my-canvas' };
+  const confetti = new ConfettiGenerator(confettiSettings);
+  confetti.render();
+
+  return () => confetti.clear();
+}, []) // add the var dependencies or not 
+```
+
 done!
 
 ## Options
