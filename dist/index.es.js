@@ -1,5 +1,3 @@
-'use strict';
-
 function ConfettiGenerator(params) {
   //////////////
   // Defaults
@@ -222,4 +220,4 @@ function ConfettiGenerator(params) {
   };
 }
 
-module.exports = ConfettiGenerator;
+export default ConfettiGenerator;
