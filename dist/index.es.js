@@ -128,7 +128,7 @@ function ConfettiGenerator(params) {
       }
       case 'svg': {
         ctx.save();
-        var image = new Image();
+        var image = new window.Image();
         image.src = p.src;
         var size = p.size || 15;
         ctx.translate(p.x + size / 2, p.y + size / 2);
