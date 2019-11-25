@@ -1,6 +1,6 @@
 {
   "name": "confetti-js",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Easily Generate random confetti for your above-the-fold content",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
