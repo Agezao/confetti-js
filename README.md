@@ -55,7 +55,7 @@ React.useEffect(() => {
   confetti.render();
 
   return () => confetti.clear();
-}, []) // add the var dependencies or not 
+}, []) // add the var dependencies or not
 ```
 
 done!
@@ -69,8 +69,9 @@ done!
 | *`size`* | Prop size | 1.8 | 1 |
 | *`animate`* | If the confetti should fall | false | true |
 | *`clock`* | The speed confetti fall | 50 | 25 |
-| *`props`* | The type of props(confetti) that should be rendered. In addition to those listed in the default, there's a special "svg" type which requires further configuration and is detailed below. | ['circle', 'square'] | ['circle', 'square', 'triangle', 'line'] | 
+| *`props`* | The type of props(confetti) that should be rendered. In addition to those listed in the default, there's a special "svg" type which requires further configuration and is detailed below. | ['circle', 'square'] | ['circle', 'square', 'triangle', 'line'] |
 | *`colors`* | The color to be rendered on the confetti. By default, RGB format inside an array. | [[0,0,0], [255,255,255]] | [[165,104,246],[230,61,135],[0,199,228],[253,214,126]] |
+| *`start_from_edge`* | Whether the confettis should fall from the top of the screen (or should move up from the bottom) | true | false |
 | *`width`* | Canvas width | 960 | *window size* |
 | *`height`* | Canvas height | 767 | *window height* |
 | *`rotate`* | If set to `true`, SVG and squares will rotate while falling. | `true` | `false` |
@@ -80,7 +81,7 @@ done!
 There is an extra special partical type ("prop") which allows you to render SVGs as confetti particles. For example:
 
 ```json
-{ 
+{
   "props": [
     "circle",
     "square",
