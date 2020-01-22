@@ -9,7 +9,8 @@ var AppClass = function() {
     clock: 25,
     rotate: false,
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
+    start_from_edge: false
   };
 
   var confetti = null;
@@ -37,6 +38,8 @@ var AppClass = function() {
     document.getElementById('colors').value = parsedColors.substring(1, parsedColors.length - 1);
 
     document.getElementById('animate').checked = appstate.animate;
+
+    document.getElementById('start_from_edge').checked = appstate.start_from_edge;
 
     document.getElementById('json-output').innerHTML = JSON.stringify(appstate);
   };
@@ -70,6 +73,9 @@ var AppClass = function() {
     appstate.colors = JSON.parse(appstate.colors);
 
     appstate.animate = document.getElementById('animate').checked;
+
+    appstate.start_from_edge = document.getElementById('start_from_edge').checked;
+
     appstate.rotate = document.getElementById('rotate').checked;
 
     document.getElementById('json-output').innerHTML = JSON.stringify(appstate);
