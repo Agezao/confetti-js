@@ -98,7 +98,6 @@ function ConfettiGenerator(params) {
   // Confetti drawing on canvas
   function particleDraw(p) {
     if (!p) {
-      // Particle has been removed
       return;
     }
 
@@ -173,7 +172,6 @@ function ConfettiGenerator(params) {
   //////////////
   // Render confetti on canvas
   var _render = function() {
-      //canvas dimensions
       cv.width = appstate.width;
       cv.height = appstate.height;
       particles = [];
@@ -189,7 +187,6 @@ function ConfettiGenerator(params) {
 
         update();
 
-        //animation loop
         if(appstate.animate) requestAnimationFrame(draw);
       }
 
@@ -197,18 +194,7 @@ function ConfettiGenerator(params) {
 
         for (var i = 0; i < appstate.max; i++) {
           var p = particles[i];
-<<<<<<< HEAD
-          if(appstate.animate)
-            p.y += p.speed;
 
-          if (p.rotate)
-            p.rotation += p.speed / 35;
-
-          if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
-            particles[i] = p;
-            particles[i].x = rand(appstate.width, true);
-            particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
-=======
           if (p) {
             if(appstate.animate)
               p.y += p.speed;
@@ -222,16 +208,13 @@ function ConfettiGenerator(params) {
                 particles[i].x = rand(appstate.width, true);
                 particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
               } else {
-                // Mark as to-delete
                 particles[i] = undefined;
               }
             }
->>>>>>> e53bb8960d34ace150fed28359130a2f3646619c
           }
         }
 
         if (particles.every(function(p) { return p === undefined; })) {
-          // Clear when there is no particles left
           _clear();
         }
       }
