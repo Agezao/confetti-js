@@ -11,6 +11,7 @@ function ConfettiGenerator(params) {
     clock: 25, // Speed of confetti fall
     interval: null, // Draw interval holder
     rotate: false, // Whenever to rotate a prop
+    start_from_edge: false, // Should confettis spawn at the top/bottom of the screen?
     width: window.innerWidth, // canvas width (as int, in px)
     height: window.innerHeight // canvas height (as int, in px)
   };
@@ -32,6 +33,8 @@ function ConfettiGenerator(params) {
       appstate.colors = params.colors;
     if(params.clock)
       appstate.clock = params.clock;
+    if(params.start_from_edge !== undefined && params.start_from_edge !== null)
+      appstate.start_from_edge = params.start_from_edge;
     if(params.width)
       appstate.width = params.width;
     if(params.height)
@@ -73,7 +76,7 @@ function ConfettiGenerator(params) {
     var p = {
       prop: prop.type ? prop.type : prop, //prop type
       x: rand(appstate.width), //x-coordinate
-      y: rand(appstate.height), //y-coordinate
+      y: appstate.start_from_edge ? (appstate.clock >= 0 ? -10 : parseFloat(appstate.height) + 10) : rand(appstate.height), //y-coordinate
       src: prop.src,
       radius: rand(4) + 1, //radius
       size: prop.size,
@@ -101,7 +104,7 @@ function ConfettiGenerator(params) {
         ctx.moveTo(p.x, p.y);
         ctx.arc(p.x, p.y, p.radius * appstate.size, 0, Math.PI * 2, true);
         ctx.fill();
-        break;  
+        break;
       }
       case 'triangle': {
         ctx.moveTo(p.x, p.y);
@@ -140,7 +143,7 @@ function ConfettiGenerator(params) {
       }
     }
   }
-  
+
   //////////////
   // Public itens
   //////////////
@@ -150,7 +153,7 @@ function ConfettiGenerator(params) {
   var _clear = function() {
     appstate.animate = false;
     clearInterval(appstate.interval);
-    
+
     requestAnimationFrame(function() {
     	ctx.clearRect(0, 0, cv.width, cv.height);
       var w = cv.width;
@@ -169,13 +172,13 @@ function ConfettiGenerator(params) {
 
       for(var i = 0; i < appstate.max; i ++)
         particles.push(particleFactory());
-      
+
       function draw(){
         ctx.clearRect(0, 0, appstate.width, appstate.height);
 
         for(var i in particles)
           particleDraw(particles[i]);
-        
+
         update();
 
         //animation loop
@@ -191,9 +194,9 @@ function ConfettiGenerator(params) {
 
           if (p.rotate)
             p.rotation += p.speed / 35;
-          
+
           if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
-            particles[i] = p; 
+            particles[i] = p;
             particles[i].x = rand(appstate.width, true);
             particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
           }
