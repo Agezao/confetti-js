@@ -68,6 +68,7 @@ done!
 | *`max`* | The number of props(confetti) to be rendered | 11 | 80 |
 | *`size`* | Prop size | 1.8 | 1 |
 | *`animate`* | If the confetti should fall | false | true |
+| *`respawn`* | If the confetti should be recreated after going off-screen | false | true |
 | *`clock`* | The speed confetti fall | 50 | 25 |
 | *`props`* | The type of props(confetti) that should be rendered. In addition to those listed in the default, there's a special "svg" type which requires further configuration and is detailed below. | ['circle', 'square'] | ['circle', 'square', 'triangle', 'line'] |
 | *`colors`* | The color to be rendered on the confetti. By default, RGB format inside an array. | [[0,0,0], [255,255,255]] | [[165,104,246],[230,61,135],[0,199,228],[253,214,126]] |
