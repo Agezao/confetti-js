@@ -58,6 +58,36 @@ React.useEffect(() => {
 }, []) // add the var dependencies or not
 ```
 
+### Angular
+
+```typescript
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import ConfettiGenerator from "confetti-js";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.sass']
+})
+export class AppComponent {
+  @ViewChild('my-canvas', { static: false }) myCanvas: ElementRef;
+  public confetti: ConfettiGenerator;
+  
+  constructor() {}
+
+  ngAfterViewInit() {
+    var confettiSettings = { target: this.myCanvas.nativeElement }; // Passing the canvas element itself instead of id
+    this.confetti = new ConfettiGenerator(confettiSettings);
+    
+    console.log("Dropping confetti");
+    this.confetti.render();
+    setTimeout( () => {
+      this.confetti.clear();
+    }, 5000); // Stop confetti after 5 seconds
+  }
+}
+```
+
 done!
 
 ## Options
