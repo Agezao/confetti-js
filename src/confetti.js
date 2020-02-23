@@ -8,7 +8,12 @@ export default function ConfettiGenerator(params) {
     animate: true, // Should animate?
     respawn: true, // Should confettis be respawned when getting out of screen?
     props: ['circle', 'square', 'triangle', 'line'], // Types of confetti
-    colors: [[165,104,246],[230,61,135],[0,199,228],[253,214,126]], // Colors to render confetti
+    colors: [
+      [165, 104, 246],
+      [230, 61, 135],
+      [0, 199, 228],
+      [253, 214, 126]
+    ], // Colors to render confetti
     clock: 25, // Speed of confetti fall
     interval: null, // Draw interval holder
     rotate: false, // Whenever to rotate a prop
@@ -19,50 +24,51 @@ export default function ConfettiGenerator(params) {
 
   //////////////
   // Setting parameters if received
-  if(params) {
-    if(params.target)
+  if (params) {
+    if (params.target)
       appstate.target = params.target;
-    if(params.max)
+    if (params.max)
       appstate.max = params.max;
-    if(params.size)
+    if (params.size)
       appstate.size = params.size;
-    if(params.animate !== undefined && params.animate !== null)
+    if (params.animate !== undefined && params.animate !== null)
       appstate.animate = params.animate;
-    if(params.respawn !== undefined && params.respawn !== null)
+    if (params.respawn !== undefined && params.respawn !== null)
       appstate.respawn = params.respawn;
-    if(params.props)
+    if (params.props)
       appstate.props = params.props;
-    if(params.colors)
+    if (params.colors)
       appstate.colors = params.colors;
-    if(params.clock)
+    if (params.clock)
       appstate.clock = params.clock;
-    if(params.start_from_edge !== undefined && params.start_from_edge !== null)
+    if (params.start_from_edge !== undefined && params.start_from_edge !== null)
       appstate.start_from_edge = params.start_from_edge;
-    if(params.width)
+    if (params.width)
       appstate.width = params.width;
-    if(params.height)
+    if (params.height)
       appstate.height = params.height;
-    if(params.rotate !== undefined && params.rotate !== null)
+    if (params.rotate !== undefined && params.rotate !== null)
       appstate.rotate = params.rotate;
   }
 
   //////////////
   // Properties
-  var cv = document.getElementById(appstate.target);
+  var cv = (appstate.target instanceof HTMLCanvasElement) ? appstate.target : document.getElementById(appstate.target);
   var ctx = cv.getContext("2d");
   var particles = [];
 
   //////////////
   // Random helper (to minimize typing)
   function rand(limit, floor) {
-    if(!limit) limit = 1;
+    if (!limit) limit = 1;
     var rand = Math.random() * limit;
     return !floor ? rand : Math.floor(rand);
   }
 
-  var totalWeight = appstate.props.reduce(function(weight, prop) {
+  var totalWeight = appstate.props.reduce(function (weight, prop) {
     return weight + (prop.weight || 1);
   }, 0);
+
   function selectProp() {
     var rand = Math.random() * totalWeight;
     for (var i = 0; i < appstate.props.length; ++i) {
@@ -87,7 +93,7 @@ export default function ConfettiGenerator(params) {
       line: Math.floor(rand(65) - 30), // line angle
       angles: [rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2, rand(10, true) + 2], // triangle drawing angles
       color: appstate.colors[rand(appstate.colors.length, true)], // color
-      rotation: rand(360, true) * Math.PI/180,
+      rotation: rand(360, true) * Math.PI / 180,
       speed: rand(appstate.clock / 7) + (appstate.clock / 30)
     };
 
@@ -103,11 +109,11 @@ export default function ConfettiGenerator(params) {
 
     var op = (p.radius <= 3) ? 0.4 : 0.8;
 
-    ctx.fillStyle = ctx.strokeStyle = "rgba(" + p.color + ", "+ op +")";
+    ctx.fillStyle = ctx.strokeStyle = "rgba(" + p.color + ", " + op + ")";
     ctx.beginPath();
 
-    switch(p.prop) {
-      case 'circle':{
+    switch (p.prop) {
+      case 'circle': {
         ctx.moveTo(p.x, p.y);
         ctx.arc(p.x, p.y, p.radius * appstate.size, 0, Math.PI * 2, true);
         ctx.fill();
@@ -121,7 +127,7 @@ export default function ConfettiGenerator(params) {
         ctx.fill();
         break;
       }
-      case 'line':{
+      case 'line': {
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(p.x + (p.line * appstate.size), p.y + (p.radius * 5));
         ctx.lineWidth = 2 * appstate.size;
@@ -130,9 +136,9 @@ export default function ConfettiGenerator(params) {
       }
       case 'square': {
         ctx.save();
-        ctx.translate(p.x+15, p.y+5);
+        ctx.translate(p.x + 15, p.y + 5);
         ctx.rotate(p.rotation);
-        ctx.fillRect(-15 * appstate.size,-5 * appstate.size,15 * appstate.size,5 * appstate.size);
+        ctx.fillRect(-15 * appstate.size, -5 * appstate.size, 15 * appstate.size, 5 * appstate.size);
         ctx.restore();
         break;
       }
@@ -142,9 +148,9 @@ export default function ConfettiGenerator(params) {
         image.src = p.src;
         var size = p.size || 15;
         ctx.translate(p.x + size / 2, p.y + size / 2);
-        if(p.rotate)
+        if (p.rotate)
           ctx.rotate(p.rotation);
-        ctx.drawImage(image, -(size/2) * appstate.size, -(size/2) * appstate.size, size * appstate.size, size * appstate.size);
+        ctx.drawImage(image, -(size / 2) * appstate.size, -(size / 2) * appstate.size, size * appstate.size, size * appstate.size);
         ctx.restore();
         break;
       }
@@ -157,12 +163,12 @@ export default function ConfettiGenerator(params) {
 
   //////////////
   // Clean actual state
-  var _clear = function() {
+  var _clear = function () {
     appstate.animate = false;
     clearInterval(appstate.interval);
 
-    requestAnimationFrame(function() {
-    	ctx.clearRect(0, 0, cv.width, cv.height);
+    requestAnimationFrame(function () {
+      ctx.clearRect(0, 0, cv.width, cv.height);
       var w = cv.width;
       cv.width = 1;
       cv.width = w;
@@ -171,55 +177,57 @@ export default function ConfettiGenerator(params) {
 
   //////////////
   // Render confetti on canvas
-  var _render = function() {
-      cv.width = appstate.width;
-      cv.height = appstate.height;
-      particles = [];
+  var _render = function () {
+    cv.width = appstate.width;
+    cv.height = appstate.height;
+    particles = [];
 
-      for(var i = 0; i < appstate.max; i ++)
-        particles.push(particleFactory());
+    for (var i = 0; i < appstate.max; i++)
+      particles.push(particleFactory());
 
-      function draw(){
-        ctx.clearRect(0, 0, appstate.width, appstate.height);
+    function draw() {
+      ctx.clearRect(0, 0, appstate.width, appstate.height);
 
-        for(var i in particles)
-          particleDraw(particles[i]);
+      for (var i in particles)
+        particleDraw(particles[i]);
 
-        update();
+      update();
 
-        if(appstate.animate) requestAnimationFrame(draw);
-      }
+      if (appstate.animate) requestAnimationFrame(draw);
+    }
 
-      function update() {
+    function update() {
 
-        for (var i = 0; i < appstate.max; i++) {
-          var p = particles[i];
+      for (var i = 0; i < appstate.max; i++) {
+        var p = particles[i];
 
-          if (p) {
-            if(appstate.animate)
-              p.y += p.speed;
+        if (p) {
+          if (appstate.animate)
+            p.y += p.speed;
 
-            if (p.rotate)
-              p.rotation += p.speed / 35;
+          if (p.rotate)
+            p.rotation += p.speed / 35;
 
-            if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
-              if(appstate.respawn) {
-                particles[i] = p;
-                particles[i].x = rand(appstate.width, true);
-                particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
-              } else {
-                particles[i] = undefined;
-              }
+          if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
+            if (appstate.respawn) {
+              particles[i] = p;
+              particles[i].x = rand(appstate.width, true);
+              particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
+            } else {
+              particles[i] = undefined;
             }
           }
         }
-
-        if (particles.every(function(p) { return p === undefined; })) {
-          _clear();
-        }
       }
 
-      return requestAnimationFrame(draw);
+      if (particles.every(function (p) {
+          return p === undefined;
+        })) {
+        _clear();
+      }
+    }
+
+    return requestAnimationFrame(draw);
   };
 
   return {
