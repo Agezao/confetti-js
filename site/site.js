@@ -18,7 +18,9 @@ var AppClass = function() {
 
   //
   var updateForm = function() {
-    document.getElementById('canvas-id').value = appstate.target;
+    document.getElementById('canvas-id').value = typeof appstate.target == 'object'
+      ? appstate.target.id
+      : appstate.target;
     document.getElementById('max-confetti').value = appstate.max;
     document.getElementById('clock').value = appstate.clock;
     document.getElementById('size').value = appstate.size;

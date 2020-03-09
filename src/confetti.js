@@ -46,9 +46,28 @@ export default function ConfettiGenerator(params) {
       appstate.rotate = params.rotate;
   }
 
+
+  //////////////
+  // Early exit if the target is not the correct type, or is null
+  if(
+    typeof appstate.target != 'object' &&
+    typeof appstate.target != 'string'
+  ) {
+    throw new TypeError('The target parameter should be a node or string');
+  }
+
+  if(
+    (typeof appstate.target == 'object' && appstate.target === null) ||
+    (typeof appstate.target == 'string' && document.getElementById(appstate.target) === null)
+  ) {
+    throw new ReferenceError('The target element does not exist');
+  }
+
   //////////////
   // Properties
-  var cv = document.getElementById(appstate.target);
+  var cv = typeof appstate.target == 'object'
+    ? appstate.target
+    : document.getElementById(appstate.target);
   var ctx = cv.getContext("2d");
   var particles = [];
 
