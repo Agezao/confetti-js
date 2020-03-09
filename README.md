@@ -72,7 +72,7 @@ done!
 
 | Attribute | Description | Example value | Default value |
 |---------------------------|-------------|--------------------|---------|
-| *`target`* | The Id tag or node of the canvas that will be used | 'my-canvas' | 'confetti-holder' | document.getElementById('my-canvas') |
+| *`target`* | The Id tag or node of the canvas that will be used | 'my-canvas' | 'confetti-holder' |
 | *`max`* | The number of props(confetti) to be rendered | 11 | 80 |
 | *`size`* | Prop size | 1.8 | 1 |
 | *`animate`* | If the confetti should fall | false | true |
