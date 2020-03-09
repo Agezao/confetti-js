@@ -46,7 +46,6 @@ export default function ConfettiGenerator(params) {
       appstate.rotate = params.rotate;
   }
 
-
   //////////////
   // Early exit if the target is not the correct type, or is null
   if(
@@ -57,10 +56,10 @@ export default function ConfettiGenerator(params) {
   }
 
   if(
-    (typeof appstate.target == 'object' && appstate.target === null) ||
+    (typeof appstate.target == 'object' && (appstate.target === null || !appstate.target instanceof HTMLCanvasElement)) ||
     (typeof appstate.target == 'string' && document.getElementById(appstate.target) === null)
   ) {
-    throw new ReferenceError('The target element does not exist');
+    throw new ReferenceError('The target element does not exist or is not a canvas element');
   }
 
   //////////////
