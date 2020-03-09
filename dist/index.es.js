@@ -57,7 +57,7 @@ function ConfettiGenerator(params) {
 
   if(
     (typeof appstate.target == 'object' && (appstate.target === null || !appstate.target instanceof HTMLCanvasElement)) ||
-    (typeof appstate.target == 'string' && document.getElementById(appstate.target) === null)
+    (typeof appstate.target == 'string' && (document.getElementById(appstate.target) === null || !document.getElementById(appstate.target) instanceof HTMLCanvasElement))
   ) {
     throw new ReferenceError('The target element does not exist or is not a canvas element');
   }
