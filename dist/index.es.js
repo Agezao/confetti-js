@@ -47,8 +47,26 @@ function ConfettiGenerator(params) {
   }
 
   //////////////
+  // Early exit if the target is not the correct type, or is null
+  if(
+    typeof appstate.target != 'object' &&
+    typeof appstate.target != 'string'
+  ) {
+    throw new TypeError('The target parameter should be a node or string');
+  }
+
+  if(
+    (typeof appstate.target == 'object' && (appstate.target === null || !appstate.target instanceof HTMLCanvasElement)) ||
+    (typeof appstate.target == 'string' && (document.getElementById(appstate.target) === null || !document.getElementById(appstate.target) instanceof HTMLCanvasElement))
+  ) {
+    throw new ReferenceError('The target element does not exist or is not a canvas element');
+  }
+
+  //////////////
   // Properties
-  var cv = document.getElementById(appstate.target);
+  var cv = typeof appstate.target == 'object'
+    ? appstate.target
+    : document.getElementById(appstate.target);
   var ctx = cv.getContext("2d");
   var particles = [];
 
