@@ -128,4 +128,4 @@ You can use/hack/re-distribute/do whatever you want with this for free without h
 _But if you take the time to contribute with the project it would be nice too, just saying :)_
 
 ## Thanks
-Special thanks to _["Paper Matthew"](https://codepen.io/paper_matthew/pen/PNxrbK)_ on codepen for providing the starting point wich I fork to build this. You are awesome.
+Special thanks to _["Paper Matthew"](https://codepen.io/paper_matthew/pen/PNxrbK)_ on codepen for providing the starting point which I fork to build this. You are awesome.
