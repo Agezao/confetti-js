@@ -14,7 +14,8 @@ function ConfettiGenerator(params) {
     rotate: false, // Whenever to rotate a prop
     start_from_edge: false, // Should confettis spawn at the top/bottom of the screen?
     width: window.innerWidth, // canvas width (as int, in px)
-    height: window.innerHeight // canvas height (as int, in px)
+    height: window.innerHeight, // canvas height (as int, in px)
+    fps: 17 // calculated fps limit for animation loop (1000 / FPS, e.g. 60FPS = 17, 30FPS = 33)
   };
 
   //////////////
@@ -44,6 +45,8 @@ function ConfettiGenerator(params) {
       appstate.height = params.height;
     if(params.rotate !== undefined && params.rotate !== null)
       appstate.rotate = params.rotate;
+    if(params.fps)
+      appstate.fps = Math.round(1000 / params.fps) | 0;
   }
 
   //////////////
@@ -193,6 +196,7 @@ function ConfettiGenerator(params) {
       cv.width = appstate.width;
       cv.height = appstate.height;
       particles = [];
+      update.last = (new Date).getTime();
 
       for(var i = 0; i < appstate.max; i ++)
         particles.push(particleFactory());
@@ -205,20 +209,24 @@ function ConfettiGenerator(params) {
 
         update();
 
-        if(appstate.animate) requestAnimationFrame(draw);
+        if(appstate.animate) {
+          setTimeout(function() { requestAnimationFrame(draw); }, appstate.fps);
+        }
       }
 
       function update() {
+        var time = (new Date).getTime();
+        var elapsed = time - update.last; // update in proportion to elapsed time so particle distance is roughly equal across different FPS limits
 
         for (var i = 0; i < appstate.max; i++) {
           var p = particles[i];
 
           if (p) {
             if(appstate.animate)
-              p.y += p.speed;
+              p.y += p.speed * (elapsed / 20); // elapsed divided into semi-arbitrary number for backwards compatibility with speeds expected from various "clock" settings, tuned by feel
 
             if (p.rotate)
-              p.rotation += p.speed / 35;
+              p.rotation += p.speed / 35 * (elapsed / 20);
 
             if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
               if(appstate.respawn) {
@@ -230,6 +238,8 @@ function ConfettiGenerator(params) {
               }
             }
           }
+
+          update.last = time;
         }
 
         if (particles.every(function(p) { return p === undefined; })) {

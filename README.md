@@ -84,6 +84,7 @@ done!
 | *`width`* | Canvas width | 960 | *window size* |
 | *`height`* | Canvas height | 767 | *window height* |
 | *`rotate`* | If set to `true`, SVG and squares will rotate while falling. | `true` | `false` |
+| *`fps`* | Limit the number of draws per second to preserve browser performance (0 for unlimited). | 120 | 60 |
 
 ### Special SVG particle type
 
