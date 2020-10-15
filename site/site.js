@@ -11,7 +11,8 @@ var AppClass = function() {
     width: window.innerWidth,
     height: window.innerHeight,
     start_from_edge: false,
-    respawn: true
+    respawn: true,
+    fps: 60
   };
 
   var confetti = null;
@@ -26,6 +27,7 @@ var AppClass = function() {
     document.getElementById('size').value = appstate.size;
     document.getElementById('width').value = appstate.width;
     document.getElementById('height').value = appstate.height;
+    document.getElementById('fps').value = appstate.fps;
 
     document.getElementById('circle').checked = appstate.props.indexOf('circle') > -1;
     document.getElementById('square').checked = appstate.props.indexOf('square') > -1;
@@ -56,6 +58,7 @@ var AppClass = function() {
     appstate.size = document.getElementById('size').value;
     appstate.width = document.getElementById('width').value;
     appstate.height = document.getElementById('height').value;
+    appstate.fps = document.getElementById('fps').value;
     
     appstate.props = [];
     if(document.getElementById('circle').checked)
