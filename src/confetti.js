@@ -6,7 +6,7 @@ export default function ConfettiGenerator(params) {
     max: 80, // Max itens to render
     size: 1, // prop size
     animate: true, // Should animate?
-    respawn: true, // Should confettis be respawned when getting out of screen?
+    respawn_duration: true, // How long should confetti respawn after falling off screen (milliseconds) 
     props: ['circle', 'square', 'triangle', 'line'], // Types of confetti
     colors: [[165,104,246],[230,61,135],[0,199,228],[253,214,126]], // Colors to render confetti
     clock: 25, // Speed of confetti fall
@@ -28,8 +28,8 @@ export default function ConfettiGenerator(params) {
       appstate.size = params.size;
     if(params.animate !== undefined && params.animate !== null)
       appstate.animate = params.animate;
-    if(params.respawn !== undefined && params.respawn !== null)
-      appstate.respawn = params.respawn;
+    if(params.respawn_duration !== undefined && params.respawn_duration !== null)
+      appstate.respawn_duration = params.respawn_duration;
     if(params.props)
       appstate.props = params.props;
     if(params.colors)
@@ -194,6 +194,13 @@ export default function ConfettiGenerator(params) {
       cv.height = appstate.height;
       particles = [];
 
+      if (appstate.respawn_duration > 0) {
+        setTimeout(
+          () => (appstate.respawn_duration = 0),
+          appstate.respawn_duration
+        );
+      }
+
       for(var i = 0; i < appstate.max; i ++)
         particles.push(particleFactory());
 
@@ -221,7 +228,7 @@ export default function ConfettiGenerator(params) {
               p.rotation += p.speed / 35;
 
             if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
-              if(appstate.respawn) {
+              if(appstate.respawn_duration > 0) {
                 particles[i] = p;
                 particles[i].x = rand(appstate.width, true);
                 particles[i].y = p.speed >= 0 ? -10 : parseFloat(appstate.height);
