@@ -187,13 +187,11 @@ export default function ConfettiGenerator(params) {
     });
   }
 
-   //////////////
   // Pause confetti animation
   var _pause = function () {
       appstate.animate = "paused";
   }
 
-   //////////////
   // Continue confetti animation
   var _continue = function () {
       appstate.animate = true;
@@ -221,14 +219,13 @@ export default function ConfettiGenerator(params) {
       }
 
       function update() {
-
         for (var i = 0; i < appstate.max; i++) {
           var p = particles[i];
 
           if (p) {
             if((typeof appstate.animate === "boolean" && appstate.animate)) {
               p.y += p.speed
-            }
+            } 
 
             if (p.rotate)
               p.rotation += p.speed / 35;
