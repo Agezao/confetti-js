@@ -180,11 +180,21 @@ export default function ConfettiGenerator(params) {
     clearInterval(appstate.interval);
 
     requestAnimationFrame(function() {
-    	ctx.clearRect(0, 0, cv.width, cv.height);
+        ctx.clearRect(0, 0, cv.width, cv.height);
       var w = cv.width;
       cv.width = 1;
       cv.width = w;
     });
+  }
+
+  // Pause confetti animation
+  var _pause = function () {
+      appstate.animate = "paused";
+  }
+
+  // Continue confetti animation
+  var _continue = function () {
+      appstate.animate = true;
   }
 
   //////////////
@@ -209,16 +219,17 @@ export default function ConfettiGenerator(params) {
       }
 
       function update() {
-
         for (var i = 0; i < appstate.max; i++) {
           var p = particles[i];
 
           if (p) {
-            if(appstate.animate)
-              p.y += p.speed;
+            if((typeof appstate.animate === "boolean" && appstate.animate)) {
+              p.y += p.speed
+            } 
 
-            if (p.rotate)
+            if ((typeof appstate.animate === "boolean" && appstate.animate) && p.rotate) {
               p.rotation += p.speed / 35;
+            }
 
             if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
               if(appstate.respawn) {
@@ -242,6 +253,8 @@ export default function ConfettiGenerator(params) {
 
   return {
     render: _render,
-    clear: _clear
+    clear: _clear,
+    pause: _pause,
+    continue: _continue
   }
 }
