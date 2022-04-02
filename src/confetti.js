@@ -227,8 +227,9 @@ export default function ConfettiGenerator(params) {
               p.y += p.speed
             } 
 
-            if (p.rotate)
+            if ((typeof appstate.animate === "boolean" && appstate.animate) && p.rotate) {
               p.rotation += p.speed / 35;
+            }
 
             if ((p.speed >= 0 && p.y > appstate.height) || (p.speed < 0 && p.y < 0)) {
               if(appstate.respawn) {
