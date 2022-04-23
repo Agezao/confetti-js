@@ -1,4 +1,5 @@
 import replace from "rollup-plugin-replace";
+import serve from "rollup-plugin-serve";
 import { uglify } from "rollup-plugin-uglify";
 
 import pkg from "./package.json";
@@ -6,7 +7,7 @@ import pkg from "./package.json";
 const mergeAll = objs => Object.assign({}, ...objs);
 
 const configBase = {
-  input: "src/confetti.js",
+  input: "src/index.js",
   output: {
     exports: "default"
   },
@@ -14,7 +15,9 @@ const configBase = {
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {})
   ],
-  plugins: []
+  plugins: [
+    serve({ port: 3000, open: true })
+  ]
 };
 
 const umdConfig = mergeAll([
