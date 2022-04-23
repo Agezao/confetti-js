@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/Agezao/confetti-js#readme",
   "devDependencies": {
-    "rollup": "^1.10.1",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
