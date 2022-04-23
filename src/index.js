@@ -64,9 +64,8 @@ export default function ConfettiGenerator(params) {
 
   // Random helper (to minimize typing)
   function rand(limit, floor) {
-    // eslint-disable-next-line no-param-reassign
-    if (!limit) limit = 1;
-    const randomValue = Math.random() * limit;
+    const _limit = !limit ? 1 : limit;
+    const randomValue = Math.random() * _limit;
     return !floor ? randomValue : Math.floor(randomValue);
   }
 
@@ -80,20 +79,21 @@ export default function ConfettiGenerator(params) {
       if (randNumber < weight) return i;
       randNumber -= weight;
     }
+
+    return null;
   }
 
   // Confetti particle generator
   function particleFactory() {
     const prop = appstate.props[selectProp()];
+
+    let y = rand(appstate.height);
+    if (appstate.start_from_edge) y = appstate.clock >= 0 ? -10 : parseFloat(appstate.height) + 10;
+
     const p = {
       prop: prop.type ? prop.type : prop, // prop type
       x: rand(appstate.width), // x-coordinate
-      // eslint-disable-next-line no-nested-ternary
-      y: appstate.start_from_edge
-        ? appstate.clock >= 0
-          ? -10
-          : parseFloat(appstate.height) + 10
-        : rand(appstate.height), // y-coordinate
+      y, // y-coordinate
       src: prop.src,
       radius: rand(4) + 1, // radius
       size: prop.size,
@@ -116,8 +116,8 @@ export default function ConfettiGenerator(params) {
 
     const op = p.radius <= 3 ? 0.4 : 0.8;
 
-    // eslint-disable-next-line no-multi-assign
-    ctx.fillStyle = ctx.strokeStyle = `rgba(${p.color}, ${op})`;
+    ctx.fillStyle = `rgba(${p.color}, ${op})`;
+    ctx.strokeStyle = ctx.fillStyle.toString();
     ctx.beginPath();
 
     switch (p.prop) {
