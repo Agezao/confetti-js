@@ -7,6 +7,7 @@
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "scripts": {
+    "lint": "eslint ./src",
     "dev": "rollup -c -w",
     "build": "rm -fr ./dist && rollup -c"
   },
@@ -22,6 +23,12 @@
   "homepage": "https://github.com/Agezao/confetti-js#readme",
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2",
     "rollup": "^1.32.1",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-serve": "^1.1.0",
