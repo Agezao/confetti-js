@@ -84,6 +84,7 @@ done!
 | *`width`* | Canvas width | 960 | *window size* |
 | *`height`* | Canvas height | 767 | *window height* |
 | *`rotate`* | If set to `true`, SVG and squares will rotate while falling. | `true` | `false` |
+| *`enable_opacity`* | Determines if confetti particles will utilize a randomized opacity. | `false` | `true` |
 
 ### Special SVG particle type
 
