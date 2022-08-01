@@ -14,7 +14,8 @@ function ConfettiGenerator(params) {
     rotate: false, // Whenever to rotate a prop
     start_from_edge: false, // Should confettis spawn at the top/bottom of the screen?
     width: window.innerWidth, // canvas width (as int, in px)
-    height: window.innerHeight // canvas height (as int, in px)
+    height: window.innerHeight, // canvas height (as int, in px),
+    enable_opacity: true // Whether to enable opacity on particles
   };
 
   //////////////
@@ -44,6 +45,8 @@ function ConfettiGenerator(params) {
       appstate.height = params.height;
     if(params.rotate !== undefined && params.rotate !== null)
       appstate.rotate = params.rotate;
+    if(params.enable_opacity !== undefined)
+      appstate.enable_opacity = params.enable_opacity;
   }
 
   //////////////
@@ -119,7 +122,10 @@ function ConfettiGenerator(params) {
       return;
     }
 
-    var op = (p.radius <= 3) ? 0.4 : 0.8;
+    var op = 1;
+    if (appstate.enable_opacity) {
+      op = (p.radius <= 3) ? 0.4 : 0.8;
+    }
 
     ctx.fillStyle = ctx.strokeStyle = "rgba(" + p.color + ", "+ op +")";
     ctx.beginPath();

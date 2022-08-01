@@ -11,7 +11,8 @@ var AppClass = function() {
     width: window.innerWidth,
     height: window.innerHeight,
     start_from_edge: false,
-    respawn: true
+    respawn: true,
+    enable_opacity: true
   };
 
   var confetti = null;
@@ -45,6 +46,8 @@ var AppClass = function() {
     document.getElementById('start_from_edge').checked = appstate.start_from_edge;
 
     document.getElementById('respawn').checked = appstate.respawn;
+
+    document.getElementById('enable_opacity').checked = appstate.enable_opacity;
 
     document.getElementById('json-output').innerHTML = JSON.stringify(appstate);
   };
@@ -84,6 +87,8 @@ var AppClass = function() {
     appstate.respawn = document.getElementById('respawn').checked;
 
     appstate.rotate = document.getElementById('rotate').checked;
+
+    appstate.enable_opacity = document.getElementById('enable_opacity').checked;
 
     document.getElementById('json-output').innerHTML = JSON.stringify(appstate);
   };
