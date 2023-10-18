@@ -138,6 +138,7 @@ function debounce(func){
 
 window.addEventListener('resize', debounce(function(e){
   confetti.setWidth(window.innerWidth)
+  //confetti.render()
 }))
 ```
 
