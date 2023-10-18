@@ -106,10 +106,15 @@ var AppClass = function() {
     confetti.clear();
   }
 
+  var setWidth = function(width) {
+    confetti.setWidth(width)
+  }
+
   return {
     start: start,
     clear: clear,
-    render: render
+    render: render,
+    setWidth: setWidth
   };
 }
 
