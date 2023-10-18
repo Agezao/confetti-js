@@ -188,6 +188,13 @@ function ConfettiGenerator(params) {
   };
 
   //////////////
+  // Set canvas width
+  var _setWidth = function(width) {
+    appstate.width = width;
+    cv.width = appstate.width;
+  };
+
+  //////////////
   // Render confetti on canvas
   var _render = function() {
       cv.width = appstate.width;
@@ -242,7 +249,8 @@ function ConfettiGenerator(params) {
 
   return {
     render: _render,
-    clear: _clear
+    clear: _clear,
+    setWidth: _setWidth
   }
 }
 
